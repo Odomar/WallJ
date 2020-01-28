@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Wall-J" default="compile" basedir=".">
+	<description>
+		Wall-J, the Space Cleaner !
+	</description>
+
+	<target name="compile">
+		<mkdir dir="classes"/>
+		<javac srcdir="src" 
+			destdir="classes"
+			includeantruntime="false">
+			<classpath path="lib/JBox2D/jbox2d-library-2.2.1.1.jar:lib/zen5/zen5.jar"/>
+		</javac>
+	</target>
+	
+	<target name="javadoc">
+		<javadoc access="public" author="true" 
+			classpath="lib/JBox2D/jbox2d-library-2.2.1.1.jar:lib/zen5/zen5.jar" 
+			destdir="doc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" 
+			packagenames="fr.umlv.wallj.bomb,fr.umlv.wallj.pathfinding,fr.umlv.wallj.game,fr.umlv.wallj.display,fr.umlv.wallj.main" 
+			source="9" sourcepath="src" splitindex="true" use="true" version="true">
+			<link href="doc/"/>
+		</javadoc>
+	</target>
+	
+	<target name="jar" depends="compile">
+		<mkdir dir="jar"/>
+		<jar jarfile="jar/wall-j.jar" basedir="classes">
+            <manifest>
+                <attribute name="Main-Class" value="fr.umlv.wallj.main.Main"/>
+				<attribute name="Class-Path" value="../lib/zen5/zen5.jar ../lib/JBox2D/jbox2d-library-2.2.1.1.jar"/>
+            </manifest>
+		</jar>
+	</target>
+
+	<target name="clean">
+		<delete dir="classes"/>
+		<delete dir="jar"/>
+		<delete dir="doc"/>
+	</target>
+</project>
